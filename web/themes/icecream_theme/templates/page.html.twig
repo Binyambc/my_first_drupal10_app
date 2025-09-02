@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <head-placeholder token="{{ placeholder_token }}">
+    <title>{{ head_title|safe_join(' | ') }}</title>
+    <css-placeholder token="{{ placeholder_token }}">
+    <js-placeholder token="{{ placeholder_token }}">
+    <meta charset="utf-8">
+  </head>
+  <body{{ attributes }}>
+
+    {# Header #}
+    <header class="header" role="banner">
+      {% if page.header %}
+        <div class="site-branding">
+          {{ page.header }}
+        </div>
+      {% endif %}
+
+      <div class="heading">
+        <h1>Welcome</h1>
+      </div>
+
+      {% if page.menu %}
+        <nav class="menu" role="navigation">
+          {{ page.menu }}
+        </nav>
+      {% endif %}
+    </header>
+
+    {# Main Content Area #}
+    <main class="main" role="main">
+      <div class="content">
+        {{ page.content }}
+      </div>
+
+      {% if page.sidebar %}
+        <aside class="sidebar" role="complementary">
+          {{ page.sidebar }}
+        </aside>
+      {% endif %}
+    </main>
+
+    {# Footer #}
+    {% if page.footer %}
+      <footer class="footer" role="contentinfo">
+        {{ page.footer }}
+      </footer>
+    {% endif %}
+
+    <js-bottom-placeholder token="{{ placeholder_token }}">
+  </body>
+</html>

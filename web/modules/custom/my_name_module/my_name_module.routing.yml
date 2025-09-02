@@ -1,0 +1,7 @@
+my_name_module.page:
+  path: '/name'
+  defaults:
+    _controller: '\Drupal\my_name_module\Controller\MyNameController::name'
+    _title: "Favorite name"
+  requirements:
+    _permission: "access content"

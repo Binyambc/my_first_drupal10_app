@@ -1,0 +1,4 @@
+name: My name module
+description: Favorite name
+type: module
+core_version_requirement: ^10 || ^11
