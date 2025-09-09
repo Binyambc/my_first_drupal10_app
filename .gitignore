@@ -7,6 +7,9 @@
 /web/themes/contrib/
 /web/profiles/contrib/
 /libraries/
+# Build outputs
+/js/dist/
+/js/dist_dev/
 
 # Local config
 /sites/*/settings.local.php
