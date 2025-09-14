@@ -1,0 +1,215 @@
+{#
+/**
+ * @file
+ * Simple Fresh Theme page template
+ */
+#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ head_title|safe_join(' | ') }}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  
+  <!-- Header -->
+  <header class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-4">
+      <div class="flex items-center justify-between">
+        <h1 class="text-2xl font-bold text-blue-600">Fresh Theme</h1>
+        <div class="flex items-center space-x-4">
+          {{ page.header }}
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="bg-gray-800 text-white">
+    <div class="max-w-7xl mx-auto px-4 py-4">
+      <!-- Mobile hamburger button -->
+      <button class="md:hidden hamburger" id="hamburger">
+        <span class="block w-6 h-0.5 bg-white mb-1"></span>
+        <span class="block w-6 h-0.5 bg-white mb-1"></span>
+        <span class="block w-6 h-0.5 bg-white"></span>
+      </button>
+      
+      <!-- Navigation menu -->
+      <div class="nav-menu" id="nav-menu">
+        {% if page.navigation %}
+          {{ page.navigation }}
+        {% else %}
+          <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
+            <li><a href="/" class="block py-2 hover:text-blue-300">Home</a></li>
+            <li><a href="/about" class="block py-2 hover:text-blue-300">About</a></li>
+            <li><a href="/contact" class="block py-2 hover:text-blue-300">Contact</a></li>
+            {% if logged_in %}
+              <li><a href="/user" class="block py-2 hover:text-blue-300">My Account</a></li>
+              <li><a href="/user/logout" class="block py-2 hover:text-blue-300">Logout</a></li>
+            {% else %}
+              <li><a href="/user/login" class="block py-2 hover:text-blue-300">Login</a></li>
+              <li><a href="/user/register" class="block py-2 hover:text-blue-300">Register</a></li>
+            {% endif %}
+          </ul>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <!-- Highlighted Messages -->
+  {% if page.highlighted %}
+  <section class="bg-blue-50 border-l-4 border-blue-400 p-4">
+    <div class="max-w-7xl mx-auto px-4">
+      {{ page.highlighted }}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Front Page Hero -->
+  {% if is_front %}
+  <section class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-col lg:flex-row items-center gap-8">
+        <!-- Image (1/4 on desktop) -->
+        <div class="w-full lg:w-1/4">
+          <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=300&fit=crop" 
+               alt="Hero Image" 
+               class="w-full h-64 object-cover rounded-lg shadow-lg">
+        </div>
+        <!-- Text (3/4 on desktop) -->
+        <div class="w-full lg:w-3/4 text-center lg:text-left">
+          <h1 class="text-4xl lg:text-6xl font-bold mb-6">
+            Welcome to Our
+            <span class="text-yellow-300">Fresh</span> Experience
+          </h1>
+          <p class="text-xl mb-8 text-blue-100">
+            Discover amazing content with our mobile-first responsive design.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <a href="#content" class="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
+              Get Started
+            </a>
+            <a href="#about" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors">
+              Learn More
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if current_path == '/user/login' %}
+  <section class="max-w-md mx-auto mt-12">
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <h2 class="text-2xl font-bold text-blue-600 mb-6 text-center">Login</h2>
+      {{ page.content }}
+    </div>
+  </section>
+{% endif %}
+
+{% if current_path == '/user/register' %}
+  <section class="max-w-md mx-auto mt-12">
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <h2 class="text-2xl font-bold text-blue-600 mb-6 text-center">Register</h2>
+      {{ page.content }}
+    </div>
+  </section>
+{% endif %}
+
+{% if current_path starts with '/search' %}
+  <section class="max-w-lg mx-auto mt-12">
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <h2 class="text-2xl font-bold text-blue-600 mb-6 text-center">Search Results</h2>
+      {{ page.content }}
+    </div>
+  </section>
+{% endif %}
+
+  <!-- Main Content -->
+  <main id="content" class="flex-1">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+      <div class="flex flex-col lg:flex-row gap-8">
+        
+        <!-- Sidebar First -->
+        {% if page.sidebar_first %}
+        <aside class="w-full lg:w-1/4">
+          <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+            {{ page.sidebar_first }}
+          </div>
+        </aside>
+        {% endif %}
+
+        <!-- Main Content -->
+        <div class="flex-1">
+          <div class="bg-white rounded-lg shadow-md p-6">
+            {{ page.content }}
+          </div>
+        </div>
+
+        <!-- Sidebar Second -->
+        {% if page.sidebar_second %}
+        <aside class="w-full lg:w-1/4">
+          <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-lg font-semibold mb-4">Additional Info</h3>
+            {{ page.sidebar_second }}
+          </div>
+        </aside>
+        {% endif %}
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div>
+          <h4 class="text-lg font-semibold mb-4">About Fresh Theme</h4>
+          <p class="text-gray-300">A simple, mobile-first Drupal theme.</p>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Navigation</h4>
+          <ul class="space-y-2 text-gray-300">
+            <li><a href="/" class="hover:text-white">Home</a></li>
+            <li><a href="/about" class="hover:text-white">About</a></li>
+            <li><a href="/contact" class="hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Resources</h4>
+          <ul class="space-y-2 text-gray-300">
+            <li><a href="/help" class="hover:text-white">Help</a></li>
+            <li><a href="/support" class="hover:text-white">Support</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Contact</h4>
+          <p class="text-gray-300">Get in touch with us.</p>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; {{ "now"|date("Y") }} Fresh Theme. Built with Drupal and Tailwind CSS.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Simple JavaScript for mobile menu -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('nav-menu');
+      
+      if (hamburger && navMenu) {
+        hamburger.addEventListener('click', function() {
+          navMenu.classList.toggle('hidden');
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

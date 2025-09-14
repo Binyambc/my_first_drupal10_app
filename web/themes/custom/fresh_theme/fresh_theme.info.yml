@@ -1,0 +1,17 @@
+name: Fresh Theme
+description: 'A simple, mobile-first Drupal theme with Tailwind CSS'
+type: theme
+core_version_requirement: ^10 || ^11
+base theme: false
+
+libraries:
+  - fresh_theme/global
+
+regions:
+  header: 'Header'
+  navigation: 'Navigation'
+  highlighted: 'Highlighted'
+  content: 'Content'
+  sidebar_first: 'Sidebar First'
+  sidebar_second: 'Sidebar Second'
+  footer: 'Footer'

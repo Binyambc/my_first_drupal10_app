@@ -1,0 +1,40 @@
+/* Fresh Theme - Simple CSS */
+
+/* Mobile navigation styles */
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+  
+  .nav-menu.show {
+    display: block;
+  }
+  
+  .hamburger {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  .hamburger {
+    display: none;
+  }
+  
+  .nav-menu {
+    display: block;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom button styles */
+.btn-primary {
+  @apply bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors;
+}

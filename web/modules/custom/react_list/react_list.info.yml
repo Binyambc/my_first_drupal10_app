@@ -6,4 +6,4 @@ package: custome
 
 dependencies:
   - drupal:node
-  - drupa:jsonapi
+  - drupal:jsonapi
