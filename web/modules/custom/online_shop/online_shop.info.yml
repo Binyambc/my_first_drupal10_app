@@ -1,0 +1,7 @@
+name: Online Shop
+type: module
+description: "A simple module to display products from a react app"
+core_version_requirement: ^10 || ^11
+# dependencies:
+#   - drupal:node
+  

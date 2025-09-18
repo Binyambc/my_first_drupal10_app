@@ -1,9 +1,0 @@
-name: React List
-description: "A React component that displays a list of items fetched from a Drupal 11 endpoint"
-type: module
-core_version_requirement: ^10 || ^11
-package: custome
-
-dependencies:
-  - drupal:node
-  - drupal:jsonapi

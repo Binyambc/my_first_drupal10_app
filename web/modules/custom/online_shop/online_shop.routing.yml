@@ -1,0 +1,7 @@
+online_shop.page:
+  path: '/online_shop'
+  defaults:
+    _controller: 'Drupal\online_shop\Controller\OnlineShopController::content'
+    _title: "Online Shop module"
+  requirements:
+    _permission: "access content"
